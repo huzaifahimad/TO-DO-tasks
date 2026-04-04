@@ -98,6 +98,47 @@ A simple TODO application built with FastAPI and MongoDB database.
 - **Endpoint:** `DELETE /tasks/{task_id}`
 - **Response:** 204 No Content (Success)
 
+## Deployment on Vercel
+
+### Prerequisites
+- Vercel account (https://vercel.com)
+- GitHub repository connected to Vercel
+- MongoDB Atlas account with connection string
+
+### Steps to Deploy
+
+1. **Set Environment Variables on Vercel:**
+   - Go to Vercel Dashboard → Project Settings → Environment Variables
+   - Add the following variables:
+     ```
+     MONGODB_URL = your_mongodb_connection_string
+     DATABASE_NAME = todo_db (or your chosen name)
+     COLLECTION_NAME = tasks (or your chosen name)
+     ```
+
+2. **Ensure MongoDB Connection String is Secure:**
+   - Use Vercel's Environment Variables (never commit `.env` to git)
+   - Example connection string format:
+     ```
+     mongodb+srv://username:password@cluster.mongodb.net/dbname?retryWrites=true&w=majority
+     ```
+
+3. **Deploy:**
+   - Push your changes to GitHub
+   - Vercel will automatically detect and deploy
+   - Your API will be available at: `https://your-project.vercel.app/`
+
+4. **Test the Deployment:**
+   - API Health Check: `https://your-project.vercel.app/health`
+   - Swagger UI: `https://your-project.vercel.app/docs`
+   - API Root: `https://your-project.vercel.app/`
+
+### Important Notes
+- Only the FastAPI backend is deployed on Vercel
+- The Streamlit frontend should be run locally or deployed separately on Streamlit Cloud
+- For production, update the `STREAMLIT_API_URL` environment variable to point to your Vercel API
+- The API has CORS enabled for all origins (you may want to restrict this in production)
+
 ## Project Structure
 
 ```

@@ -3,6 +3,7 @@ import requests
 from datetime import datetime, date
 import time
 import random
+import os
 
 # Configure the page with enhanced styling
 st.set_page_config(
@@ -148,8 +149,8 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# API base URL
-API_URL = "http://localhost:8000"
+# API base URL - use environment variable or default to localhost for development
+API_URL = os.getenv("STREAMLIT_API_URL", "http://localhost:8000").rstrip("/")
 
 # App title and description with animation
 st.markdown('<div class="fade-in">', unsafe_allow_html=True)
