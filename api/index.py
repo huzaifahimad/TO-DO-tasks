@@ -20,7 +20,7 @@ except Exception as e:
 # Health check endpoint
 @app.get("/health")
 async def health():
-    return {"status": "ok"}
+    return {"status": "ok", "service": "TODO API"}
 
 # Export the app for Vercel
 __all__ = ['app']
