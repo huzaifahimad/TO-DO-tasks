@@ -48,7 +48,11 @@ async def create_task(task: TaskCreate):
         "description": task.description,
         "completed": task.completed,
         "created_at": datetime.utcnow(),
-        "updated_at": datetime.utcnow()
+        "updated_at": datetime.utcnow(),
+        "start_date": task.start_date,
+        "end_date": task.end_date,
+        "priority": task.priority,
+        "progress_status": task.progress_status
     }
     
     result = tasks_collection.insert_one(task_data)
@@ -61,7 +65,11 @@ async def create_task(task: TaskCreate):
         "description": created_task["description"],
         "completed": created_task["completed"],
         "created_at": created_task["created_at"],
-        "updated_at": created_task["updated_at"]
+        "updated_at": created_task["updated_at"],
+        "start_date": created_task.get("start_date"),
+        "end_date": created_task.get("end_date"),
+        "priority": created_task.get("priority"),
+        "progress_status": created_task.get("progress_status")
     }
 
 
@@ -80,7 +88,11 @@ async def get_all_tasks():
             "description": task["description"],
             "completed": task["completed"],
             "created_at": task["created_at"],
-            "updated_at": task["updated_at"]
+            "updated_at": task["updated_at"],
+            "start_date": task.get("start_date"),
+            "end_date": task.get("end_date"),
+            "priority": task.get("priority"),
+            "progress_status": task.get("progress_status")
         }
         for task in tasks
     ]
@@ -111,7 +123,11 @@ async def get_task_by_id(task_id: str):
         "description": task["description"],
         "completed": task["completed"],
         "created_at": task["created_at"],
-        "updated_at": task["updated_at"]
+        "updated_at": task["updated_at"],
+        "start_date": task.get("start_date"),
+        "end_date": task.get("end_date"),
+        "priority": task.get("priority"),
+        "progress_status": task.get("progress_status")
     }
 
 
@@ -142,6 +158,14 @@ async def update_task(task_id: str, task_update: TaskUpdate):
         update_data["description"] = task_update.description
     if task_update.completed is not None:
         update_data["completed"] = task_update.completed
+    if task_update.start_date is not None:
+        update_data["start_date"] = task_update.start_date
+    if task_update.end_date is not None:
+        update_data["end_date"] = task_update.end_date
+    if task_update.priority is not None:
+        update_data["priority"] = task_update.priority
+    if task_update.progress_status is not None:
+        update_data["progress_status"] = task_update.progress_status
     
     update_data["updated_at"] = datetime.utcnow()
     
@@ -158,7 +182,11 @@ async def update_task(task_id: str, task_update: TaskUpdate):
         "description": updated_task["description"],
         "completed": updated_task["completed"],
         "created_at": updated_task["created_at"],
-        "updated_at": updated_task["updated_at"]
+        "updated_at": updated_task["updated_at"],
+        "start_date": updated_task.get("start_date"),
+        "end_date": updated_task.get("end_date"),
+        "priority": updated_task.get("priority"),
+        "progress_status": updated_task.get("progress_status")
     }
 
 
