@@ -24,18 +24,18 @@ app.add_middleware(
 tasks_collection = get_tasks_collection()
 
 
-@app.get("/", tags=["Root"])
+@app.get("/api", tags=["Root"])
 async def root():
     """Root endpoint - API is running"""
     return {
         "message": "TODO API is running!",
         "version": "1.0.0",
         "endpoints": {
-            "create_task": "POST /tasks",
-            "get_all_tasks": "GET /tasks",
-            "get_task_by_id": "GET /tasks/{task_id}",
-            "update_task": "PUT /tasks/{task_id}",
-            "delete_task": "DELETE /tasks/{task_id}"
+            "create_task": "POST /api/tasks",
+            "get_all_tasks": "GET /api/tasks",
+            "get_task_by_id": "GET /api/tasks/{task_id}",
+            "update_task": "PUT /api/tasks/{task_id}",
+            "delete_task": "DELETE /api/tasks/{task_id}"
         }
     }
 
