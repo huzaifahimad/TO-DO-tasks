@@ -150,7 +150,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # API base URL - use environment variable or default to localhost for development
-API_URL = os.getenv("STREAMLIT_API_URL", "http://localhost:8000").rstrip("/")
+API_URL = os.getenv("STREAMLIT_API_URL", "https://to-do-tasks-topaz.vercel.app").rstrip("/")
 
 # App title and description with animation
 st.markdown('<div class="fade-in">', unsafe_allow_html=True)
