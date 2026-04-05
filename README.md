@@ -34,12 +34,17 @@ A simple TODO application built with FastAPI and MongoDB database.
    source venv/bin/activate
    ```
 
-3. **Install dependencies:**
+3. **Install backend dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
 
-4. **Configure MongoDB Connection:**
+4. **Optional: install Streamlit frontend dependencies for local UI use:**
+   ```bash
+   pip install streamlit==1.28.1 requests==2.31.0
+   ```
+
+5. **Configure MongoDB Connection:**
    - Open `.env` file
    - Replace `your_username`, `your_password`, and `your_cluster` with your MongoDB Atlas credentials
    - Example:
@@ -135,7 +140,8 @@ A simple TODO application built with FastAPI and MongoDB database.
 
 ### Important Notes
 - Only the FastAPI backend is deployed on Vercel
-- The Streamlit frontend should be run locally or deployed separately on Streamlit Cloud
+- `requirements.txt` intentionally contains backend-only dependencies so Vercel does not try to install Streamlit-only packages during deployment
+- The Streamlit frontend should be run locally or deployed separately on Streamlit Cloud, with `streamlit` and `requests` installed manually
 - For production, update the `STREAMLIT_API_URL` environment variable to point to your Vercel API
 - The API has CORS enabled for all origins (you may want to restrict this in production)
 
