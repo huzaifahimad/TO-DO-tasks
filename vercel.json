@@ -2,10 +2,6 @@
   "version": 2,
   "builds": [
     {
-      "src": "*.html",
-      "use": "@vercel/static"
-    },
-    {
       "src": "api/index.py",
       "use": "@vercel/python"
     }
@@ -14,6 +10,12 @@
     {
       "src": "/api/(.*)",
       "dest": "api/index.py"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "functions": {
